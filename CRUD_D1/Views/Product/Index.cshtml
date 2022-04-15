@@ -1,0 +1,53 @@
+﻿@model IEnumerable<CRUD_D1.Models.Product>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1 class="text-center fw-bolder bg-light">Product Admintrasor</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-outline-success">Create New</a>
+</p>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">
+                @Html.DisplayNameFor(model => model.Product_Name)
+            </th>
+            <th scope="col">
+                @Html.DisplayNameFor(model => model.Product_Img)
+            </th>
+            <th scope="col">
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th scope="col">
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+            <th colspan="3"></th>            
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td scope="row">
+                @Html.DisplayFor(modelItem => item.Product_Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Product_Img)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Product_Id" class="btn btn-warning"><i class="fas fa-edit me-2"></i>Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Product_Id"  class="btn btn-info"><i class="fa fa-eye me-2"></i>Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Product_Id" onclick="return confirm('Are you sure to delete this record?')" class="btn btn-danger"><i class="fas fa-trash me-2"></i>Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
